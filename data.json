@@ -1,0 +1,806 @@
+{
+  "kpis": {
+    "total_revenue": 2201496.61,
+    "total_invoices": 40970,
+    "unique_customers": 32541,
+    "avg_invoice_value": 53.73,
+    "repeat_customers": 8418,
+    "repeat_rate": 25.87,
+    "date_start": "2026-08-12",
+    "date_end": "2026-08-25"
+  },
+  "daily": [
+    {
+      "date": "2026-08-12",
+      "invoices": 17,
+      "revenue": 43.22,
+      "unique_customers": 16
+    },
+    {
+      "date": "2026-08-13",
+      "invoices": 3,
+      "revenue": 760.17,
+      "unique_customers": 3
+    },
+    {
+      "date": "2026-08-15",
+      "invoices": 2661,
+      "revenue": 6765.25,
+      "unique_customers": 2660
+    },
+    {
+      "date": "2026-08-16",
+      "invoices": 3905,
+      "revenue": 172978.81,
+      "unique_customers": 3895
+    },
+    {
+      "date": "2026-08-17",
+      "invoices": 3752,
+      "revenue": 236806.78,
+      "unique_customers": 3746
+    },
+    {
+      "date": "2026-08-18",
+      "invoices": 3598,
+      "revenue": 217852.54,
+      "unique_customers": 3592
+    },
+    {
+      "date": "2026-08-19",
+      "invoices": 3455,
+      "revenue": 226770.34,
+      "unique_customers": 3449
+    },
+    {
+      "date": "2026-08-20",
+      "invoices": 3673,
+      "revenue": 207256.78,
+      "unique_customers": 3673
+    },
+    {
+      "date": "2026-08-21",
+      "invoices": 3716,
+      "revenue": 231196.61,
+      "unique_customers": 3710
+    },
+    {
+      "date": "2026-08-22",
+      "invoices": 3876,
+      "revenue": 229094.92,
+      "unique_customers": 3874
+    },
+    {
+      "date": "2026-08-23",
+      "invoices": 3445,
+      "revenue": 235022.88,
+      "unique_customers": 3439
+    },
+    {
+      "date": "2026-08-24",
+      "invoices": 4214,
+      "revenue": 207127.12,
+      "unique_customers": 4209
+    },
+    {
+      "date": "2026-08-25",
+      "invoices": 4655,
+      "revenue": 229821.19,
+      "unique_customers": 4641
+    }
+  ],
+  "tiers": [
+    {
+      "Invoice Amount": 3,
+      "count": 32609,
+      "revenue": 82904.24
+    },
+    {
+      "Invoice Amount": 299,
+      "count": 8361,
+      "revenue": 2118592.37
+    }
+  ],
+  "top_customers": [
+    {
+      "mobile": 7988599014,
+      "invoices": 4,
+      "total_spend": 511.86,
+      "last_purchase": "2026-08-25",
+      "first_purchase": "2026-08-24"
+    },
+    {
+      "mobile": 9609625175,
+      "invoices": 4,
+      "total_spend": 511.86,
+      "last_purchase": "2026-08-19",
+      "first_purchase": "2026-08-17"
+    },
+    {
+      "mobile": 9786531234,
+      "invoices": 4,
+      "total_spend": 511.86,
+      "last_purchase": "2026-08-17",
+      "first_purchase": "2026-08-16"
+    },
+    {
+      "mobile": 7752032413,
+      "invoices": 4,
+      "total_spend": 511.86,
+      "last_purchase": "2026-08-19",
+      "first_purchase": "2026-08-17"
+    },
+    {
+      "mobile": 9380833200,
+      "invoices": 3,
+      "total_spend": 258.47,
+      "last_purchase": "2026-08-17",
+      "first_purchase": "2026-08-16"
+    },
+    {
+      "mobile": 9177553999,
+      "invoices": 3,
+      "total_spend": 258.47,
+      "last_purchase": "2026-08-21",
+      "first_purchase": "2026-08-19"
+    },
+    {
+      "mobile": 9773535837,
+      "invoices": 3,
+      "total_spend": 258.47,
+      "last_purchase": "2026-08-23",
+      "first_purchase": "2026-08-22"
+    },
+    {
+      "mobile": 9704482205,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-17",
+      "first_purchase": "2026-08-16"
+    },
+    {
+      "mobile": 9704468837,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-16",
+      "first_purchase": "2026-08-15"
+    },
+    {
+      "mobile": 9704458741,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-24",
+      "first_purchase": "2026-08-23"
+    },
+    {
+      "mobile": 8754262469,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-24",
+      "first_purchase": "2026-08-23"
+    },
+    {
+      "mobile": 7761880445,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-25",
+      "first_purchase": "2026-08-24"
+    },
+    {
+      "mobile": 9361881651,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-17",
+      "first_purchase": "2026-08-16"
+    },
+    {
+      "mobile": 9704296766,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-25",
+      "first_purchase": "2026-08-24"
+    },
+    {
+      "mobile": 9362193968,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-23",
+      "first_purchase": "2026-08-22"
+    },
+    {
+      "mobile": 9362225820,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-25",
+      "first_purchase": "2026-08-24"
+    },
+    {
+      "mobile": 9704282786,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-21",
+      "first_purchase": "2026-08-20"
+    },
+    {
+      "mobile": 8754014631,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-22",
+      "first_purchase": "2026-08-21"
+    },
+    {
+      "mobile": 9704235958,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-25",
+      "first_purchase": "2026-08-24"
+    },
+    {
+      "mobile": 8753990897,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-17",
+      "first_purchase": "2026-08-15"
+    },
+    {
+      "mobile": 9362162153,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-21",
+      "first_purchase": "2026-08-20"
+    },
+    {
+      "mobile": 7760211206,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-18",
+      "first_purchase": "2026-08-17"
+    },
+    {
+      "mobile": 7760211388,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-24",
+      "first_purchase": "2026-08-23"
+    },
+    {
+      "mobile": 8754701877,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-17",
+      "first_purchase": "2026-08-16"
+    },
+    {
+      "mobile": 9361428550,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-18",
+      "first_purchase": "2026-08-17"
+    },
+    {
+      "mobile": 7760309395,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-20",
+      "first_purchase": "2026-08-19"
+    },
+    {
+      "mobile": 7760414013,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-18",
+      "first_purchase": "2026-08-17"
+    },
+    {
+      "mobile": 9361453950,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-20",
+      "first_purchase": "2026-08-19"
+    },
+    {
+      "mobile": 9704888971,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-19",
+      "first_purchase": "2026-08-18"
+    },
+    {
+      "mobile": 7760481493,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-17",
+      "first_purchase": "2026-08-16"
+    },
+    {
+      "mobile": 9704235014,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-17",
+      "first_purchase": "2026-08-16"
+    },
+    {
+      "mobile": 9361568448,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-23",
+      "first_purchase": "2026-08-22"
+    },
+    {
+      "mobile": 9361588892,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-19",
+      "first_purchase": "2026-08-18"
+    },
+    {
+      "mobile": 7760611787,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-25",
+      "first_purchase": "2026-08-24"
+    },
+    {
+      "mobile": 9704735494,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-16",
+      "first_purchase": "2026-08-15"
+    },
+    {
+      "mobile": 7760677469,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-19",
+      "first_purchase": "2026-08-17"
+    },
+    {
+      "mobile": 7760711443,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-21",
+      "first_purchase": "2026-08-19"
+    },
+    {
+      "mobile": 9704653251,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-25",
+      "first_purchase": "2026-08-24"
+    },
+    {
+      "mobile": 9361724212,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-22",
+      "first_purchase": "2026-08-21"
+    },
+    {
+      "mobile": 9704593553,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-22",
+      "first_purchase": "2026-08-21"
+    },
+    {
+      "mobile": 9704831552,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-16",
+      "first_purchase": "2026-08-15"
+    },
+    {
+      "mobile": 9703463437,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-19",
+      "first_purchase": "2026-08-18"
+    },
+    {
+      "mobile": 7775988127,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-20",
+      "first_purchase": "2026-08-19"
+    },
+    {
+      "mobile": 7776088220,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-22",
+      "first_purchase": "2026-08-21"
+    },
+    {
+      "mobile": 9703251855,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-21",
+      "first_purchase": "2026-08-20"
+    },
+    {
+      "mobile": 9703219936,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-24",
+      "first_purchase": "2026-08-23"
+    },
+    {
+      "mobile": 7777888867,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-22",
+      "first_purchase": "2026-08-21"
+    },
+    {
+      "mobile": 7777914944,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-19",
+      "first_purchase": "2026-08-18"
+    },
+    {
+      "mobile": 7777933671,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-16",
+      "first_purchase": "2026-08-15"
+    },
+    {
+      "mobile": 9704212250,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-19",
+      "first_purchase": "2026-08-18"
+    },
+    {
+      "mobile": 8746935326,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-23",
+      "first_purchase": "2026-08-22"
+    },
+    {
+      "mobile": 7778931717,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-19",
+      "first_purchase": "2026-08-18"
+    },
+    {
+      "mobile": 9363194648,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-23",
+      "first_purchase": "2026-08-22"
+    },
+    {
+      "mobile": 7779964020,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-24",
+      "first_purchase": "2026-08-22"
+    },
+    {
+      "mobile": 9702922910,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-21",
+      "first_purchase": "2026-08-20"
+    },
+    {
+      "mobile": 9363342844,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-24",
+      "first_purchase": "2026-08-23"
+    },
+    {
+      "mobile": 9363345785,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-18",
+      "first_purchase": "2026-08-17"
+    },
+    {
+      "mobile": 9702398309,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-21",
+      "first_purchase": "2026-08-19"
+    },
+    {
+      "mobile": 7780137368,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-17",
+      "first_purchase": "2026-08-16"
+    },
+    {
+      "mobile": 8747951088,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-22",
+      "first_purchase": "2026-08-20"
+    },
+    {
+      "mobile": 9361412921,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-21",
+      "first_purchase": "2026-08-20"
+    },
+    {
+      "mobile": 7766991242,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-25",
+      "first_purchase": "2026-08-24"
+    },
+    {
+      "mobile": 9704134771,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-16",
+      "first_purchase": "2026-08-15"
+    },
+    {
+      "mobile": 9704134604,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-23",
+      "first_purchase": "2026-08-21"
+    },
+    {
+      "mobile": 9704064844,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-21",
+      "first_purchase": "2026-08-19"
+    },
+    {
+      "mobile": 9704033629,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-17",
+      "first_purchase": "2026-08-15"
+    },
+    {
+      "mobile": 9703929138,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-17",
+      "first_purchase": "2026-08-16"
+    },
+    {
+      "mobile": 7771860364,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-24",
+      "first_purchase": "2026-08-23"
+    },
+    {
+      "mobile": 9703868091,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-17",
+      "first_purchase": "2026-08-15"
+    },
+    {
+      "mobile": 9703468817,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-16",
+      "first_purchase": "2026-08-15"
+    },
+    {
+      "mobile": 9362612311,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-22",
+      "first_purchase": "2026-08-20"
+    },
+    {
+      "mobile": 9703794333,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-23",
+      "first_purchase": "2026-08-22"
+    },
+    {
+      "mobile": 9703791011,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-21",
+      "first_purchase": "2026-08-20"
+    },
+    {
+      "mobile": 9703701320,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-17",
+      "first_purchase": "2026-08-16"
+    },
+    {
+      "mobile": 9703697847,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-24",
+      "first_purchase": "2026-08-23"
+    },
+    {
+      "mobile": 9362870489,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-19",
+      "first_purchase": "2026-08-17"
+    },
+    {
+      "mobile": 7775048352,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-22",
+      "first_purchase": "2026-08-21"
+    },
+    {
+      "mobile": 8750066964,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-24",
+      "first_purchase": "2026-08-23"
+    },
+    {
+      "mobile": 7775895632,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-24",
+      "first_purchase": "2026-08-23"
+    },
+    {
+      "mobile": 7772918094,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-16",
+      "first_purchase": "2026-08-15"
+    },
+    {
+      "mobile": 9360352249,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-20",
+      "first_purchase": "2026-08-19"
+    },
+    {
+      "mobile": 7742486352,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-23",
+      "first_purchase": "2026-08-22"
+    },
+    {
+      "mobile": 7742635441,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-22",
+      "first_purchase": "2026-08-21"
+    },
+    {
+      "mobile": 7742957638,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-16",
+      "first_purchase": "2026-08-15"
+    },
+    {
+      "mobile": 7744036982,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-23",
+      "first_purchase": "2026-08-21"
+    },
+    {
+      "mobile": 9360544939,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-22",
+      "first_purchase": "2026-08-20"
+    },
+    {
+      "mobile": 7744996519,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-18",
+      "first_purchase": "2026-08-16"
+    },
+    {
+      "mobile": 9707099718,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-25",
+      "first_purchase": "2026-08-24"
+    },
+    {
+      "mobile": 7760168900,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-18",
+      "first_purchase": "2026-08-17"
+    },
+    {
+      "mobile": 7746060522,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-19",
+      "first_purchase": "2026-08-18"
+    },
+    {
+      "mobile": 9707055858,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-23",
+      "first_purchase": "2026-08-22"
+    },
+    {
+      "mobile": 9707055419,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-19",
+      "first_purchase": "2026-08-18"
+    },
+    {
+      "mobile": 7747955490,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-25",
+      "first_purchase": "2026-08-24"
+    },
+    {
+      "mobile": 7749018852,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-21",
+      "first_purchase": "2026-08-20"
+    },
+    {
+      "mobile": 9707018651,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-19",
+      "first_purchase": "2026-08-18"
+    },
+    {
+      "mobile": 9706680992,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-21",
+      "first_purchase": "2026-08-20"
+    },
+    {
+      "mobile": 9706675243,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-20",
+      "first_purchase": "2026-08-19"
+    },
+    {
+      "mobile": 9360763077,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-22",
+      "first_purchase": "2026-08-21"
+    },
+    {
+      "mobile": 7745037866,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-17",
+      "first_purchase": "2026-08-16"
+    },
+    {
+      "mobile": 8763112825,
+      "invoices": 2,
+      "total_spend": 255.93,
+      "last_purchase": "2026-08-19",
+      "first_purchase": "2026-08-18"
+    }
+  ]
+}
