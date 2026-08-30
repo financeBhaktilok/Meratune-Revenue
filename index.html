@@ -3,410 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meratune — Customer & Revenue Dashboard</title>
-<meta name="robots" content="noindex, nofollow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="chart.umd.min.js"></script>
-<style>
-  :root{
-    --bg:#0e1015;
-    --panel:#171a22;
-    --panel-2:#1d212b;
-    --line:#262b36;
-    --text:#f1f2f4;
-    --muted:#8b91a1;
-    --amber:#e8a33d;
-    --amber-dim:#4a3b22;
-    --teal:#39d6a6;
-    --teal-dim:#193a30;
-    --radius:10px;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Inter',sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
-  .mono{font-family:'JetBrains Mono',monospace;}
-  h1,h2,h3{font-family:'Space Grotesk',sans-serif;margin:0;}
-
-  /* Waveform signature divider */
-  .waveform{
-    display:flex;
-    align-items:flex-end;
-    gap:2px;
-    height:14px;
-    opacity:.55;
-  }
-  .waveform span{
-    display:block;
-    width:2px;
-    background:var(--amber);
-    border-radius:1px;
-    animation:tick 2.4s ease-in-out infinite;
-  }
-  @keyframes tick{
-    0%,100%{transform:scaleY(.4);}
-    50%{transform:scaleY(1);}
-  }
-  @media (prefers-reduced-motion: reduce){
-    .waveform span{animation:none;}
-  }
-
-  header{
-    padding:28px 32px 20px;
-    border-bottom:1px solid var(--line);
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    flex-wrap:wrap;
-    gap:16px;
-  }
-  .brand{display:flex;flex-direction:column;gap:6px;}
-  .brand-row{display:flex;align-items:center;gap:12px;}
-  .brand h1{font-size:22px;letter-spacing:-0.02em;}
-  .brand .eyebrow{
-    font-size:11px;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:var(--amber);
-    font-weight:600;
-  }
-  .range-badge{
-    font-size:12px;
-    color:var(--muted);
-    padding:6px 12px;
-    border:1px solid var(--line);
-    border-radius:100px;
-  }
-
-  main{padding:28px 32px 60px;max-width:1320px;margin:0 auto;}
-
-  .kpi-grid{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:14px;
-    margin-bottom:28px;
-  }
-  .kpi{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:18px 18px 16px;
-    position:relative;
-    overflow:hidden;
-  }
-  .kpi .label{
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    color:var(--muted);
-    margin-bottom:10px;
-  }
-  .kpi .value{
-    font-size:24px;
-    font-weight:600;
-    font-family:'Space Grotesk',sans-serif;
-    letter-spacing:-0.01em;
-  }
-  .kpi .sub{
-    font-size:12px;
-    color:var(--teal);
-    margin-top:6px;
-    font-family:'JetBrains Mono',monospace;
-  }
-
-  .grid{
-    display:grid;
-    grid-template-columns:2fr 1fr;
-    gap:16px;
-    margin-bottom:16px;
-  }
-  .panel{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:20px 22px;
-  }
-  .panel-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:16px;
-  }
-  .panel-head h2{font-size:14px;font-weight:600;}
-  .panel-head .hint{font-size:11px;color:var(--muted);}
-
-  canvas{max-height:280px;}
-
-  .tier-list{display:flex;flex-direction:column;gap:14px;margin-top:6px;}
-  .tier-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;}
-  .tier-name{display:flex;align-items:center;gap:10px;color:var(--text);}
-  .dot{width:8px;height:8px;border-radius:50%;}
-  .tier-val{font-family:'JetBrains Mono',monospace;color:var(--muted);}
-
-  table{width:100%;border-collapse:collapse;font-size:12.5px;}
-  thead th{
-    text-align:left;
-    font-size:10.5px;
-    text-transform:uppercase;
-    letter-spacing:.06em;
-    color:var(--muted);
-    font-weight:500;
-    padding:8px 10px;
-    border-bottom:1px solid var(--line);
-    position:sticky;top:0;
-    background:var(--panel);
-  }
-  tbody td{
-    padding:8px 10px;
-    border-bottom:1px solid #1f232d;
-    font-family:'JetBrains Mono',monospace;
-  }
-  tbody tr:hover{background:var(--panel-2);}
-  .rank{color:var(--amber);width:34px;}
-  .table-wrap{max-height:420px;overflow:auto;border-radius:8px;border:1px solid var(--line);}
-  .search{
-    width:100%;
-    padding:9px 12px;
-    background:var(--panel-2);
-    border:1px solid var(--line);
-    border-radius:8px;
-    color:var(--text);
-    font-family:'JetBrains Mono',monospace;
-    font-size:12.5px;
-    margin-bottom:12px;
-    outline:none;
-  }
-  .search:focus{border-color:var(--amber);}
-  .badge-repeat{
-    display:inline-block;
-    font-size:10px;
-    padding:2px 6px;
-    border-radius:100px;
-    background:var(--teal-dim);
-    color:var(--teal);
-    margin-left:6px;
-  }
-
-  footer{
-    padding:24px 32px 40px;
-    text-align:center;
-    color:var(--muted);
-    font-size:11px;
-    border-top:1px solid var(--line);
-  }
-  footer .lockline{margin-top:6px;}
-
-  @media (max-width:980px){
-    .kpi-grid{grid-template-columns:repeat(2,1fr);}
-    .grid{grid-template-columns:1fr;}
-  }
-</style>
+<title>Meratune Revenue Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.3/papaparse.min.js"></script>
 </head>
 <body>
-
 <header>
-  <div class="brand">
-    <div class="brand-row">
-      <div class="waveform" id="waveform"></div>
-      <span class="eyebrow">Private workspace</span>
-    </div>
-    <h1>Meratune — Customer &amp; Revenue Dashboard</h1>
+  <div>
+    <h1>Meratune Revenue Dashboard</h1>
+    <p>Management revenue overview</p>
   </div>
-  <div class="range-badge mono" id="range-badge">loading range…</div>
 </header>
 
 <main>
+  <section class="filters">
+    <div>
+      <label>From</label>
+      <input type="date" id="fromDate">
+    </div>
+    <div>
+      <label>To</label>
+      <input type="date" id="toDate">
+    </div>
+    <div>
+      <label>Mobile Number</label>
+      <input type="text" id="mobileSearch" placeholder="Search mobile number">
+    </div>
+    <button id="resetBtn">Reset</button>
+  </section>
 
-  <section class="kpi-grid" id="kpi-grid"></section>
+  <section class="cards">
+    <div class="card"><span>Total Revenue</span><strong id="totalRevenue">₹0</strong></div>
+    <div class="card"><span>Transactions</span><strong id="transactions">0</strong></div>
+    <div class="card"><span>Unique Customers</span><strong id="customers">0</strong></div>
+    <div class="card"><span>Average Revenue / Transaction</span><strong id="avgRevenue">₹0</strong></div>
+  </section>
 
   <section class="grid">
-    <div class="panel">
-      <div class="panel-head">
-        <h2>Daily revenue &amp; invoices</h2>
-        <span class="hint">₹ revenue (bars) · invoice count (line)</span>
-      </div>
-      <canvas id="dailyChart"></canvas>
+    <div class="panel wide">
+      <h2>Revenue by Date</h2>
+      <canvas id="dailyRevenue"></canvas>
     </div>
     <div class="panel">
-      <div class="panel-head">
-        <h2>Invoice tiers</h2>
-        <span class="hint">by revenue share</span>
+      <h2>Monthly Revenue</h2>
+      <canvas id="monthlyRevenue"></canvas>
+    </div>
+    <div class="panel">
+      <h2>Transactions by Date</h2>
+      <canvas id="dailyTransactions"></canvas>
+    </div>
+    <div class="panel wide">
+      <h2>Top Customers</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Mobile Number</th><th>Revenue</th><th>Transactions</th></tr></thead>
+          <tbody id="customerTable"></tbody>
+        </table>
       </div>
-      <canvas id="tierChart" height="170"></canvas>
-      <div class="tier-list" id="tier-list"></div>
     </div>
   </section>
 
-  <section class="panel">
-    <div class="panel-head">
-      <h2>Top customers by spend</h2>
-      <span class="hint" id="top-count-hint"></span>
-    </div>
-    <input class="search" id="customerSearch" placeholder="Filter by mobile number…">
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th class="rank">#</th>
-            <th>Mobile number</th>
-            <th>Invoices</th>
-            <th>Total spend</th>
-            <th>First purchase</th>
-            <th>Last purchase</th>
-          </tr>
-        </thead>
-        <tbody id="customer-body"></tbody>
-      </table>
-    </div>
-  </section>
-
+  <p class="privacy">Data is loaded from the repository's <code>data.csv</code>. Keep the GitHub repository private and do not publish this dashboard through ordinary public GitHub Pages when it contains customer mobile numbers.</p>
 </main>
-
-<footer>
-  Generated from Meratune_Customer_data.xlsx — figures are aggregated for reporting.
-  <div class="lockline">This page is served from a private repository. Do not make this repo public without removing customer-level data.</div>
-</footer>
-
-<script>
-// Waveform ticks
-const wf = document.getElementById('waveform');
-for(let i=0;i<14;i++){
-  const bar = document.createElement('span');
-  bar.style.height = (6 + Math.random()*8) + 'px';
-  bar.style.animationDelay = (i*0.07)+'s';
-  wf.appendChild(bar);
-}
-
-const fmtINR = n => '₹' + Number(n).toLocaleString('en-IN', {maximumFractionDigits:0});
-const fmtNum = n => Number(n).toLocaleString('en-IN');
-
-fetch('data.json')
-  .then(r => r.json())
-  .then(data => {
-    const { kpis, daily, tiers, top_customers } = data;
-
-    document.getElementById('range-badge').textContent = `${kpis.date_start} → ${kpis.date_end}`;
-
-    // KPI cards
-    const kpiGrid = document.getElementById('kpi-grid');
-    const kpiData = [
-      { label:'Total revenue', value: fmtINR(kpis.total_revenue), sub:`avg ${fmtINR(kpis.avg_invoice_value)} / invoice` },
-      { label:'Total invoices', value: fmtNum(kpis.total_invoices), sub:`across ${kpis.date_start} – ${kpis.date_end}` },
-      { label:'Unique customers', value: fmtNum(kpis.unique_customers), sub:`${kpis.repeat_customers} repeat` },
-      { label:'Repeat rate', value: kpis.repeat_rate + '%', sub:'customers with 2+ invoices' },
-      { label:'Avg invoice value', value: fmtINR(kpis.avg_invoice_value), sub:'blended across tiers' },
-    ];
-    kpiGrid.innerHTML = kpiData.map(k => `
-      <div class="kpi">
-        <div class="label">${k.label}</div>
-        <div class="value mono">${k.value}</div>
-        <div class="sub">${k.sub}</div>
-      </div>
-    `).join('');
-
-    // Daily chart
-    const ctx = document.getElementById('dailyChart').getContext('2d');
-    new Chart(ctx, {
-      data: {
-        labels: daily.map(d => d.date.slice(5)),
-        datasets: [
-          {
-            type:'bar',
-            label:'Revenue (₹)',
-            data: daily.map(d => d.revenue),
-            backgroundColor:'rgba(232,163,61,0.55)',
-            borderRadius:3,
-            yAxisID:'y'
-          },
-          {
-            type:'line',
-            label:'Invoices',
-            data: daily.map(d => d.invoices),
-            borderColor:'#39d6a6',
-            backgroundColor:'transparent',
-            tension:0.35,
-            pointRadius:2,
-            yAxisID:'y1'
-          }
-        ]
-      },
-      options: {
-        responsive:true,
-        interaction:{mode:'index', intersect:false},
-        plugins:{
-          legend:{labels:{color:'#8b91a1', font:{family:'Inter', size:11}}}
-        },
-        scales:{
-          x:{ ticks:{color:'#8b91a1', font:{family:'JetBrains Mono', size:10}}, grid:{color:'#1f232d'} },
-          y:{ position:'left', ticks:{color:'#8b91a1', font:{family:'JetBrains Mono', size:10}}, grid:{color:'#1f232d'} },
-          y1:{ position:'right', ticks:{color:'#8b91a1', font:{family:'JetBrains Mono', size:10}}, grid:{display:false} }
-        }
-      }
-    });
-
-    // Tier chart
-    const tierColors = ['#e8a33d', '#39d6a6', '#5b8def', '#e85d75'];
-    const tctx = document.getElementById('tierChart').getContext('2d');
-    new Chart(tctx, {
-      type:'doughnut',
-      data:{
-        labels: tiers.map(t => `₹${t['Invoice Amount']}`),
-        datasets:[{
-          data: tiers.map(t => t.revenue),
-          backgroundColor: tierColors,
-          borderColor:'#171a22',
-          borderWidth:3
-        }]
-      },
-      options:{
-        plugins:{ legend:{ display:false } },
-        cutout:'68%'
-      }
-    });
-
-    const totalTierRevenue = tiers.reduce((a,b)=>a+b.revenue,0);
-    document.getElementById('tier-list').innerHTML = tiers.map((t,i) => `
-      <div class="tier-row">
-        <div class="tier-name">
-          <span class="dot" style="background:${tierColors[i % tierColors.length]}"></span>
-          ₹${t['Invoice Amount']} tier
-        </div>
-        <div class="tier-val">${fmtNum(t.count)} inv · ${fmtINR(t.revenue)} (${(t.revenue/totalTierRevenue*100).toFixed(1)}%)</div>
-      </div>
-    `).join('');
-
-    // Top customers table
-    document.getElementById('top-count-hint').textContent = `top ${top_customers.length} of ${fmtNum(kpis.unique_customers)} customers`;
-    const tbody = document.getElementById('customer-body');
-    function renderRows(rows){
-      tbody.innerHTML = rows.map((c,i) => `
-        <tr>
-          <td class="rank">${i+1}</td>
-          <td>${c.mobile}${c.invoices > 1 ? '<span class="badge-repeat">repeat</span>' : ''}</td>
-          <td>${c.invoices}</td>
-          <td>${fmtINR(c.total_spend)}</td>
-          <td>${c.first_purchase}</td>
-          <td>${c.last_purchase}</td>
-        </tr>
-      `).join('');
-    }
-    renderRows(top_customers);
-
-    document.getElementById('customerSearch').addEventListener('input', e => {
-      const q = e.target.value.trim();
-      if(!q){ renderRows(top_customers); return; }
-      renderRows(top_customers.filter(c => String(c.mobile).includes(q)));
-    });
-  })
-  .catch(err => {
-    document.getElementById('kpi-grid').innerHTML = `<div class="panel">Could not load data.json — ${err}</div>`;
-  });
-</script>
-
+<script src="app.js"></script>
 </body>
 </html>
