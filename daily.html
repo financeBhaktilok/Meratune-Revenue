@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meratune — Daily Revenue & Users</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#0e1015;
+    --panel:#171a22;
+    --panel-2:#1d212b;
+    --line:#262b36;
+    --text:#f1f2f4;
+    --muted:#8b91a1;
+    --amber:#e8a33d;
+    --teal:#39d6a6;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2{font-family:'Space Grotesk',sans-serif;margin:0;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+
+  .waveform{display:flex;align-items:flex-end;gap:2px;height:14px;opacity:.55;}
+  .waveform span{display:block;width:2px;background:var(--amber);border-radius:1px;animation:tick 2.4s ease-in-out infinite;}
+  @keyframes tick{0%,100%{transform:scaleY(.4);}50%{transform:scaleY(1);}}
+  @media (prefers-reduced-motion: reduce){.waveform span{animation:none;}}
+
+  header{
+    padding:28px 32px 20px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .brand{display:flex;flex-direction:column;gap:6px;}
+  .brand-row{display:flex;align-items:center;gap:12px;}
+  .brand h1{font-size:22px;letter-spacing:-0.02em;}
+  .eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-weight:600;}
+  .range-badge{font-size:12px;color:var(--muted);padding:6px 12px;border:1px solid var(--line);border-radius:100px;}
+
+  main{padding:28px 32px 60px;max-width:1100px;margin:0 auto;}
+
+  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 18px 16px;}
+  .kpi .label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;}
+  .kpi .value{font-size:24px;font-weight:600;font-family:'Space Grotesk',sans-serif;letter-spacing:-0.01em;}
+  .kpi .sub{font-size:12px;color:var(--teal);margin-top:6px;font-family:'JetBrains Mono',monospace;}
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:16px;}
+  .panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+  .panel-head h2{font-size:14px;font-weight:600;}
+  .panel-head .hint{font-size:11px;color:var(--muted);}
+  canvas{max-height:340px;}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px;}
+  thead th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line);}
+  tbody td{padding:8px 10px;border-bottom:1px solid #1f232d;font-family:'JetBrains Mono',monospace;}
+  tbody tr:hover{background:var(--panel-2);}
+
+  footer{padding:24px 32px 40px;text-align:center;color:var(--muted);font-size:11px;border-top:1px solid var(--line);}
+
+  @media (max-width:760px){ .kpi-row{grid-template-columns:repeat(2,1fr);} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brand-row">
+      <div class="waveform" id="waveform"></div>
+      <span class="eyebrow">Private workspace</span>
+    </div>
+    <h1>Daily Revenue &amp; Users</h1>
+  </div>
+  <div class="range-badge mono" id="range-badge">loading range…</div>
+</header>
+
+<main>
+
+  <section class="kpi-row" id="kpi-row"></section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Daily revenue</h2>
+      <span class="hint">₹ per day</span>
+    </div>
+    <canvas id="revenueChart"></canvas>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Daily unique users</h2>
+      <span class="hint">distinct mobile numbers billed that day</span>
+    </div>
+    <canvas id="usersChart"></canvas>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Day-by-day</h2>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Revenue</th><th>Users</th><th>Invoices</th><th>Avg / user</th></tr>
+      </thead>
+      <tbody id="daily-body"></tbody>
+    </table>
+  </section>
+
+</main>
+
+<footer>
+  Generated from Meratune_Customer_data.xlsx — daily aggregates only, no customer-level data on this page.
+</footer>
+
+<script>
+const wf = document.getElementById('waveform');
+for(let i=0;i<14;i++){
+  const bar = document.createElement('span');
+  bar.style.height = (6 + Math.random()*8) + 'px';
+  bar.style.animationDelay = (i*0.07)+'s';
+  wf.appendChild(bar);
+}
+
+const fmtINR = n => '₹' + Number(n).toLocaleString('en-IN', {maximumFractionDigits:0});
+const fmtNum = n => Number(n).toLocaleString('en-IN');
+
+fetch('data.json')
+  .then(r => r.json())
+  .then(data => {
+    const { kpis, daily } = data;
+
+    document.getElementById('range-badge').textContent = `${kpis.date_start} → ${kpis.date_end}`;
+
+    const totalRevenue = daily.reduce((a,d) => a + d.revenue, 0);
+    const totalUsers = daily.reduce((a,d) => a + d.unique_customers, 0);
+    const avgDailyRevenue = totalRevenue / daily.length;
+    const avgDailyUsers = totalUsers / daily.length;
+    const peakRevenueDay = daily.reduce((a,b) => b.revenue > a.revenue ? b : a);
+    const peakUsersDay = daily.reduce((a,b) => b.unique_customers > a.unique_customers ? b : a);
+
+    document.getElementById('kpi-row').innerHTML = `
+      <div class="kpi">
+        <div class="label">Avg daily revenue</div>
+        <div class="value mono">${fmtINR(avgDailyRevenue)}</div>
+        <div class="sub">across ${daily.length} days</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Avg daily users</div>
+        <div class="value mono">${fmtNum(Math.round(avgDailyUsers))}</div>
+        <div class="sub">unique per day</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Peak revenue day</div>
+        <div class="value mono">${fmtINR(peakRevenueDay.revenue)}</div>
+        <div class="sub">${peakRevenueDay.date}</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Peak users day</div>
+        <div class="value mono">${fmtNum(peakUsersDay.unique_customers)}</div>
+        <div class="sub">${peakUsersDay.date}</div>
+      </div>
+    `;
+
+    const labels = daily.map(d => d.date.slice(5));
+
+    new Chart(document.getElementById('revenueChart').getContext('2d'), {
+      type:'bar',
+      data:{
+        labels,
+        datasets:[{
+          label:'Revenue (₹)',
+          data: daily.map(d => d.revenue),
+          backgroundColor:'rgba(232,163,61,0.55)',
+          borderRadius:4
+        }]
+      },
+      options:{
+        plugins:{ legend:{ display:false } },
+        scales:{
+          x:{ ticks:{color:'#8b91a1', font:{family:'JetBrains Mono', size:10}}, grid:{color:'#1f232d'} },
+          y:{ ticks:{color:'#8b91a1', font:{family:'JetBrains Mono', size:10}}, grid:{color:'#1f232d'} }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('usersChart').getContext('2d'), {
+      type:'line',
+      data:{
+        labels,
+        datasets:[{
+          label:'Unique users',
+          data: daily.map(d => d.unique_customers),
+          borderColor:'#39d6a6',
+          backgroundColor:'rgba(57,214,166,0.12)',
+          fill:true,
+          tension:0.35,
+          pointRadius:3,
+          pointBackgroundColor:'#39d6a6'
+        }]
+      },
+      options:{
+        plugins:{ legend:{ display:false } },
+        scales:{
+          x:{ ticks:{color:'#8b91a1', font:{family:'JetBrains Mono', size:10}}, grid:{color:'#1f232d'} },
+          y:{ ticks:{color:'#8b91a1', font:{family:'JetBrains Mono', size:10}}, grid:{color:'#1f232d'} }
+        }
+      }
+    });
+
+    document.getElementById('daily-body').innerHTML = daily.map(d => `
+      <tr>
+        <td>${d.date}</td>
+        <td>${fmtINR(d.revenue)}</td>
+        <td>${fmtNum(d.unique_customers)}</td>
+        <td>${fmtNum(d.invoices)}</td>
+        <td>${fmtINR(d.revenue / d.unique_customers)}</td>
+      </tr>
+    `).join('');
+  })
+  .catch(err => {
+    document.getElementById('kpi-row').innerHTML = `<div class="panel">Could not load data.json — ${err}</div>`;
+  });
+</script>
+
+</body>
+</html>
